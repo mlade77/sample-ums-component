@@ -5,12 +5,12 @@ import (
 )
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
 	_, err := w.Write([]byte("Hello World!"))
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+	w.WriteHeader(http.StatusOK)
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
