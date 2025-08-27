@@ -30,10 +30,12 @@ jobs:
     steps:
       - name: Timeout ${{ github.event.inputs.seconds }}
         run: |
-          ifconfig 
-          nslookup api.wa26nrl2xj.ums.internal.canary.k8s.ondemand.com
-          nslookup gardener-live.accounts.ondemand.com
-          nslookup api.wa26nrl2xj.ums.shoot.canary.k8s-hana.ondemand.com
+          cat /etc/os/release
+          id || true
+          ifconfig || true
+          nslookup api.wa26nrl2xj.ums.internal.canary.k8s.ondemand.com || true
+          nslookup gardener-live.accounts.ondemand.com || true
+          nslookup api.wa26nrl2xj.ums.shoot.canary.k8s-hana.ondemand.com || true
           # echo ${{ github.run_id }}
           # env
           sleep ${{ github.event.inputs.seconds }}       
