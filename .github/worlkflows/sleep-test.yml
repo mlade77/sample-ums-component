@@ -1,0 +1,34 @@
+name: Runners sleep test
+on:
+  workflow_dispatch:
+    inputs:
+      seconds:
+        description: "Seconds to run"
+        required: true
+        default: "500"
+        type: string
+      run_on:
+        description: "On which runner to run"
+        required: true
+        type: choice
+        options:
+          - ubuntu-latest
+          # - lnx-build-spot
+          # - lnx-build
+          # - lnx-test
+          # - win-build-slim
+          # - win-build
+          # - windows-latest
+
+jobs:
+  build:
+    runs-on: 
+     - ${{ github.event.inputs.run_on }}
+    # if: contains( github.event.inputs.run_on, 'lnx-' )
+    name: Sleep test on ${{ github.event.inputs.run_on }}
+    steps:
+      - name: Timeout ${{ github.event.inputs.seconds }}
+        run: |
+          echo ${{ github.run_id }}
+          env
+          sleep ${{ github.event.inputs.seconds }}       
