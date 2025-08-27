@@ -32,10 +32,16 @@ jobs:
         run: |
           cat /etc/os-release || true
           id || true
+          sudo apt update || true
           ifconfig || true
           nslookup api.wa26nrl2xj.ums.internal.canary.k8s.ondemand.com || true
           nslookup gardener-live.accounts.ondemand.com || true
           nslookup api.wa26nrl2xj.ums.shoot.canary.k8s-hana.ondemand.com || true
           # echo ${{ github.run_id }}
           # env
-          sleep ${{ github.event.inputs.seconds }}       
+          seconds=${{ github.event.inputs.seconds }}
+          for ((i=seconds; i>0; i--)); do
+            echo "$i sec."
+            sleep 1
+          done
+          echo "Done!" 
