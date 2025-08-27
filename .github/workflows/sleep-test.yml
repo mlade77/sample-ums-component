@@ -5,14 +5,14 @@ on:
       seconds:
         description: "Seconds to run"
         required: true
-        default: "500"
+        default: "60"
         type: string
       run_on:
         description: "On which runner to run"
         required: true
         type: choice
         options:
-          - ubuntu-latest
+          # - ubuntu-latest
           - self-hosted
           # - lnx-build-spot
           # - lnx-build
@@ -30,6 +30,10 @@ jobs:
     steps:
       - name: Timeout ${{ github.event.inputs.seconds }}
         run: |
-          echo ${{ github.run_id }}
-          env
+          ifconfig 
+          nslookup api.wa26nrl2xj.ums.internal.canary.k8s.ondemand.com
+          nslookup gardener-live.accounts.ondemand.com
+          nslookup api.wa26nrl2xj.ums.shoot.canary.k8s-hana.ondemand.com
+          # echo ${{ github.run_id }}
+          # env
           sleep ${{ github.event.inputs.seconds }}       
