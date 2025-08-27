@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: Timeout ${{ github.event.inputs.seconds }}
         run: |
-          cat /etc/os/release
+          cat /etc/os-release || true
           id || true
           ifconfig || true
           nslookup api.wa26nrl2xj.ums.internal.canary.k8s.ondemand.com || true
