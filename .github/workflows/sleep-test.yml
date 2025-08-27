@@ -5,7 +5,7 @@ on:
       seconds:
         description: "Seconds to run"
         required: true
-        default: "60"
+        default: "10"
         type: string
       run_on:
         description: "On which runner to run"
@@ -30,10 +30,14 @@ jobs:
     steps:
       - name: Timeout ${{ github.event.inputs.seconds }}
         run: |
-          cat /etc/os-release || true
+          # cat /etc/os-release || true
           id || true
-          sudo apt update || true
-          ifconfig || true
+          # sudo apt update || true
+          # ifconfig || true
+          kubectl version || true
+          gardenlogin version  || true
+          kubectl-gardenlogin || true
+          helmfile version || true
           nslookup api.wa26nrl2xj.ums.internal.canary.k8s.ondemand.com || true
           nslookup gardener-live.accounts.ondemand.com || true
           nslookup api.wa26nrl2xj.ums.shoot.canary.k8s-hana.ondemand.com || true
